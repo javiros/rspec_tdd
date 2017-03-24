@@ -1,14 +1,12 @@
 class PriceCalculator
-  DISCOUNTS = [0, 0, 0.05, 0.1, 0.2]
+  DISCOUNTS = [0, 0, 0.05, 0.1, 0.2, 0.25]
   def initialize(books)
     @books = books
   end
 
   def total
     raise ArgumentError unless books.is_a? Array
-    return 15.20 if books.size == 2 && books.uniq.size == 2
-    return 16 if books.size == 2
-    8
+    (1 - discount) * books.size * 8
   end
 
   def discount
