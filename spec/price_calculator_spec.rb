@@ -1,4 +1,5 @@
 require_relative '../price_calculator'
+# to run this file => rspec spec/price_calculator_spec.rb
 RSpec.describe PriceCalculator do
   describe '#total' do
     subject { described_class.new(books).total }
@@ -14,13 +15,18 @@ RSpec.describe PriceCalculator do
     end
 
     context 'when buying 2 different books' do
-      let(:books) { [0, 1, 2] }
-      it { is_expected.to eq 21.60 }
+      let(:books) { [0, 1] }
+      it { is_expected.to eq 15.2 }
     end
 
     context 'when buying 3 different books' do
-      let(:books) { [0, 1] }
-      it { is_expected.to eq 15.20 }
+      let(:books) { [0, 1, 2] }
+      it { is_expected.to eq 21.6 }
+    end
+
+    context 'when buying 3 different books + 1 copy' do
+      let(:books) { [0, 1, 2, 0] }
+      it { is_expected.to eq 29.6 }
     end
 
     context 'when  parameters is not an array' do
